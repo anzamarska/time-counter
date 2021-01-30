@@ -18,6 +18,8 @@ function Counter() {
                 <Player
                     key={player}
                     player ={player}
+                    players={players}
+                    setPlayers={setPlayers}
                 />
             )}
         </div>

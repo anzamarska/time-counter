@@ -1,10 +1,11 @@
 import React from "react";
 import "../styles/Player.css";
 
-function Player() {
+function Player({player}) {
+
     return(
         <div className="player__container">
-            <p>player name</p>
+            <p className="player__name">{player}</p>
         </div>
     )
 }

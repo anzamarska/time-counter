@@ -5,10 +5,10 @@ function Form({players, setPlayers}) {
     
     const [newPlayer, setNewPlayer] = useState("");
 
-    const addPlayer = (e) =>{
+    const addPlayer = (e) => {
         e.preventDefault();
-        setPlayers([...players, newPlayer]);
-    }
+       (players.every((player) => (player !== newPlayer))) ? setPlayers([...players, newPlayer]) : alert("no possible to add two players with the same nick");
+    };
 
     return(
         <form className="form__container">  
@@ -20,7 +20,7 @@ function Form({players, setPlayers}) {
             <input className="form__input" type="text" placeholder="15:00" id="timeGame" required/>
             <input type="submit" value="Add user" onClick={addPlayer}/>
         </form>
-    )
-}
+    );
+};
 
 export default Form;

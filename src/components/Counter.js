@@ -5,7 +5,7 @@ import Form from "./Form";
 
 function Counter() {
 
-    const [players, setPlayers] = useState([]);
+    const [players, setPlayers] = useState(["Ania","Witek", "Janek"]);
 
     return(
         <div className="counter__container">

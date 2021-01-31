@@ -11,10 +11,11 @@ function Player({player, players, setPlayers, turnTime}) {
     };
 
     const startTimer = () => {
-        var secondsPerTurn = parseInt(turnTime.split(":")[0]*60)+parseInt(turnTime.split(":")[1]);
-        var duration = secondsPerTurn;
-        var timer = duration, minutes, seconds;
-        idInterval = setInterval(()=>{
+        try{
+            var secondsPerTurn = parseInt(turnTime.split(":")[0]*60)+parseInt(turnTime.split(":")[1]);
+            var duration = secondsPerTurn;
+            var timer = duration, minutes, seconds;
+            idInterval = setInterval(()=>{
             var time = document.getElementById(player);
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
@@ -27,14 +28,17 @@ function Player({player, players, setPlayers, turnTime}) {
             }
             timer > 0 ? --timer : clearInterval(idInterval);
         }, 1000);
+        }catch{
+            alert("It is not possible start counting down without giving the time for turn");
+        };
     };
 
     return(
         <div className="player__container">
-            <button onClick={deletePlayer}>x</button>
             <p className="player__name">{player}</p>
+            <button className="button--delete" onClick={deletePlayer}>x</button>
             <div>Time for turn: <span id={player}>{turnTime}</span></div>
-            <button onClick={startTimer}>start</button>
+            <button className="button--start" onClick={startTimer}>start</button>
         </div>
     )
 };

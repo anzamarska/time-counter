@@ -1,0 +1,22 @@
+.player__container{
+    background-color: grey;
+    width: 29vw;
+    height: 20vh;
+    display: inline-block;
+    margin: 2vh 2vw;
+    position: relative;
+}
+
+.button--delete{   
+    margin: 1vw;
+    position: absolute;
+    right: 0;
+}
+
+.player__name{
+    display: inline-block;
+}
+
+.button--start{
+    background-color: indianred;
+}

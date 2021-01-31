@@ -7,7 +7,6 @@ function Counter() {
 
     const [players, setPlayers] = useState([]);
 
-   console.log("players", players);
     return(
         <div className="counter__container">
             <Form

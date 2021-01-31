@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "../styles/Form.css";
 
-function Form({players, setPlayers}) {
+function Form({players, setPlayers, setTurnTime}) {
     
     const [newPlayer, setNewPlayer] = useState("");
 
@@ -15,9 +15,9 @@ function Form({players, setPlayers}) {
             <label htmlFor="name">Name:</label>
             <input className="form__input" type="text" placeholder="Witek" id="name" onChange={e =>setNewPlayer(e.target.value)} required/>
             <label htmlFor="timeTurn">Time allotted for a turn:</label>
-            <input className="form__input" type="text" placeholder="0:30" id="timeTurn"/>
+            <input className="form__input" type="time" placeholder="0:30" id="timeTurn" onChange={e =>setTurnTime(e.target.value)}/>
             <label htmlFor="timeGame">Time allotted to the game:</label>
-            <input className="form__input" type="text" placeholder="15:00" id="timeGame" required/>
+            <input className="form__input" type="time" placeholder="15:00" id="timeGame" required/>
             <input type="submit" value="Add user" onClick={addPlayer}/>
         </form>
     );

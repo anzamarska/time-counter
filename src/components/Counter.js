@@ -6,12 +6,14 @@ import Form from "./Form";
 function Counter() {
 
     const [players, setPlayers] = useState(["Ania","Witek", "Janek"]);
+    const [turnTime, setTurnTime] = useState(0);
 
     return(
         <div className="counter__container">
             <Form
                 players={players}
                 setPlayers={setPlayers}
+                setTurnTime={setTurnTime}
             />
             {players.map(player => 
                 <Player
@@ -19,6 +21,7 @@ function Counter() {
                     player ={player}
                     players={players}
                     setPlayers={setPlayers}
+                    turnTime={turnTime}
                 />
             )}
         </div>

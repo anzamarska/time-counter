@@ -17,7 +17,7 @@ function Counter() {
                 setTurnTime={setTurnTime}
                 setGameTime={setGameTime}
             />
-            {players.map(player => 
+            {/* {players.map(player => 
                 <Player
                     key={player}
                     player ={player}
@@ -26,7 +26,7 @@ function Counter() {
                     turnTime={turnTime}
                     gameTime={gameTime}
                 />
-            )}
+            )} */}
         </div>
     )
 }

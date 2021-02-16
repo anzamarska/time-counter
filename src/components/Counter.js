@@ -5,7 +5,7 @@ import "../styles/Counter.css";
 
 function Counter() {
   const [players, setPlayers] = useState(["Ania", "Witek", "Janek"]);
-  const [turnTime, setTurnTime] = useState("00:02");
+  const [turnTime, setTurnTime] = useState(9);
   const [gameTime, setGameTime] = useState("00:03");
 
   return (
@@ -16,7 +16,7 @@ function Counter() {
         setTurnTime={setTurnTime}
         setGameTime={setGameTime}
       />
-      {/* {players.map(player => 
+      {players.map(player => 
                 <Player
                     key={player}
                     player ={player}
@@ -25,7 +25,7 @@ function Counter() {
                     turnTime={turnTime}
                     gameTime={gameTime}
                 />
-            )} */}
+            )}
     </div>
   );
 }

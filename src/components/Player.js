@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Timer from "react-compound-timer";
 import "../styles/Player.css";
 
 function Player({ player, players, setPlayers, turnTime, gameTime }) {
-
+  console.log(turnTime)
+  const playerTurnTime = turnTime
+  console.log(playerTurnTime)
   const deletePlayer = () => {
     setPlayers(
       players.filter((x) => x !== players.find((elem) => elem === player))
@@ -18,7 +20,7 @@ function Player({ player, players, setPlayers, turnTime, gameTime }) {
       </button>
 
       <Timer
-        initialTime={turnTime * 1000}
+        initialTime={turnTime}
         startImmediately={false}
         direction="backward"
       >

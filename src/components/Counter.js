@@ -15,17 +15,18 @@ function Counter() {
         setPlayers={setPlayers}
         setTurnTime={setTurnTime}
         setGameTime={setGameTime}
+        turnTime={turnTime}
       />
-      {players.map(player => 
-                <Player
-                    key={player}
-                    player ={player}
-                    players={players}
-                    setPlayers={setPlayers}
-                    turnTime={turnTime}
-                    gameTime={gameTime}
-                />
-            )}
+      {players.map((player) => (
+        <Player
+          key={player}
+          player={player}
+          players={players}
+          setPlayers={setPlayers}
+          turnTime={turnTime}
+          gameTime={gameTime}
+        />
+      ))}
     </div>
   );
 }

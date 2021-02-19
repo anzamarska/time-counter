@@ -1,30 +1,34 @@
 import React, { useState } from "react";
-import Player from "./Player";
+import Player from "./Player/Player";
 import Form from "./Form";
 import "../styles/Counter.css";
 
 function Counter() {
-  const [players, setPlayers] = useState(["Ania", "Witek", "Janek"]);
-  const [turnTime, setTurnTime] = useState(9);
-  const [gameTime, setGameTime] = useState("00:03");
+  const [players, setPlayers] = useState([]);
 
+  const addNewPlayer = (newPlayer) => {
+    setPlayers([...players, newPlayer]);
+  };
+
+  const deletePlayer = (deletedPlayer) => {
+    players.filter((player) => player === deletedPlayer);
+    setPlayers([...players]);
+  };
+
+  const onPlayerStartGTime = (player) => {
+    const playerInGame = players.filter((player) => player.name === player);
+    playerInGame.playerInGame = true;
+    setPlayers([...players]);
+  };
   return (
     <div className="counter__container">
-      <Form
-        players={players}
-        setPlayers={setPlayers}
-        setTurnTime={setTurnTime}
-        setGameTime={setGameTime}
-        turnTime={turnTime}
-      />
+      <Form onNewPlayer={(player) => addNewPlayer(player)} />
       {players.map((player) => (
         <Player
-          key={player}
+          key={player.name}
           player={player}
-          players={players}
-          setPlayers={setPlayers}
-          turnTime={turnTime}
-          gameTime={gameTime}
+          onPlayerDelete={() => deletePlayer()}
+          onGameStateChange={(player) => onPlayerStartGTime(player)}
         />
       ))}
     </div>

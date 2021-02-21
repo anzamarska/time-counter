@@ -1,7 +1,7 @@
 import React from "react";
 import Timer from "react-compound-timer";
 
-function GameTimer({gameTime, startGameTime, player, onGameControl}){
+function GameTimer({gameTime, startGameTime, player, onPlayerTimeControl}){
 
 //     const [startGameTimeCh, setStartGameTimeCh] = useState(startGameTime);
 // // This will launch only if propName value has chaged.
@@ -17,10 +17,11 @@ function GameTimer({gameTime, startGameTime, player, onGameControl}){
         // timeToUpdate={100}
         >
             
-        {({ start, resume, pause, stop, reset }) => (
+        {({ start, resume, pause, stop, reset, timerState }) => (
         <React.Fragment>
             <div>
             {" "}
+            <div>{timerState}</div>
             Time for game: <Timer.Minutes /> minutes <Timer.Seconds /> seconds
             </div>
             <br />

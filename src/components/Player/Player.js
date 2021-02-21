@@ -3,7 +3,7 @@ import Timer from "react-compound-timer";
 import "../../styles/Player.css";
 import GameTimer from "./GameTimer";
 
-function Player({ player, onPlayerDelete, onPlayerStartGTime }) {
+function Player({ player, onPlayerDelete, onGameStateChange, onCurrentTimeCheck}) {
   return (
     <div className="player__container">
       <p className="player__name">{player.name}</p>
@@ -24,6 +24,7 @@ function Player({ player, onPlayerDelete, onPlayerStartGTime }) {
           <React.Fragment>
             <div>
               {" "}
+          
               Time for turn: <Timer.Minutes /> minutes <Timer.Seconds /> seconds
             </div>
             <br />
@@ -32,9 +33,10 @@ function Player({ player, onPlayerDelete, onPlayerStartGTime }) {
                 Start
               </button>
               <button onClick={pause}>Pause</button>
-              <button onClick={(e) => onPlayerStartGTime(player.name)}>
-                startGameTime
+              <button onClick={(e) => onGameStateChange(player.name)}>
+                start
               </button>
+              <button onClick={(e) => onCurrentTimeCheck({...player, currentTime: "000"})}>check current</button>
               <button
                 className="button--stop"
                 onClick={() => {

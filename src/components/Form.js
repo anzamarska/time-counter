@@ -2,7 +2,7 @@ import React, {useState}  from "react";
 import "../styles/Form.css";
 
 function Form({onNewPlayer}) {
-  const [newPlayer, setNewPlayer] = useState({name: "", turnTime: 0, gameTime: 0, playerInGame: false});
+  const [newPlayer, setNewPlayer] = useState({name: "", turnTime: 0, gameTime: 0, playerInGame: false, currentTime: 0});
   
   const onAddingNewPlayerName = (playerName) => {
     setNewPlayer({...newPlayer, name: playerName});

@@ -15,11 +15,23 @@ function Counter() {
     setPlayers([...players]);
   };
 
-  const onPlayerStartGTime = (player) => {
-    const playerInGame = players.filter((player) => player.name === player);
+  const onPlayerStartGTime = (currentPlayerName) => {
+    const playerInGame = (players.filter((player) => player.name === currentPlayerName))[0];
     playerInGame.playerInGame = true;
     setPlayers([...players]);
   };
+  const setCurrentPlayerGameTime = (currentPlayer) => {
+    console.log("currentPlayer", currentPlayer.name)
+    const playerInGame = players.filter((player) => player.name === player);
+    console.log("playerInGame", playerInGame);
+  //   playerInGame.currentTime = player.currentTime;
+   
+  //   
+  //   // setPlayers([...players]);
+  //   console.log("playerInGame", playerInGame);
+  }
+
+  console.log("players", players);
   return (
     <div className="counter__container">
       <Form onNewPlayer={(player) => addNewPlayer(player)} />
@@ -28,9 +40,11 @@ function Counter() {
           key={player.name}
           player={player}
           onPlayerDelete={() => deletePlayer()}
-          onGameStateChange={(player) => onPlayerStartGTime(player)}
+          onGameStateChange={(currentPlayerName) => onPlayerStartGTime(currentPlayerName)}
+          onCurrentTimeCheck={(playingTime) => setCurrentPlayerGameTime(playingTime)}
         />
       ))}
+      
     </div>
   );
 }

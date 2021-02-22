@@ -10,6 +10,7 @@ function Player({
   onGameStateChangeStop,
   // onCurrentTimeCheck,
   onIncrementTime,
+  stopGameTime
 }) {
   return (
     <div className="player__container">
@@ -34,7 +35,6 @@ function Player({
               {" "}
               Time for turn: <Timer.Minutes /> minutes <Timer.Seconds /> seconds
             </div>
-            <br />
             <div>
               <button
                 className="button--start"
@@ -63,11 +63,10 @@ function Player({
           </React.Fragment>
         )}
       </Timer>
-      {/* <GameTimer
-        gameTime={player.gameTime}
-        startGameTime={player.playerInGame}
-        player={player.name}
-      /> */}
+      {player.startGameTime === true && <GameTimer
+        player={player}
+        stopGameTime={stopGameTime}
+      />}
     </div>
   );
 }

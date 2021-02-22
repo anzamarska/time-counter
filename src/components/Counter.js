@@ -33,6 +33,12 @@ function Counter() {
     setPlayers([...players]);
   };
 
+  const onStopGameTime = (currentPlayerName) => {
+    const playerInGame = players.filter(
+      (player) => player.name === currentPlayerName
+    )[0];
+    playerInGame.startGameTime = false
+  }
   // const setCurrentPlayerGameTime = (currentPlayer) => {
   //   // console.log("currentPlayer", currentPlayer.name);
   //   const playerInGame = players.filter(
@@ -52,12 +58,12 @@ function Counter() {
       let timer = setInterval(function () {
         playTime = ++playTime;
         playerInGame.currentTurnTime = playTime;
+        playerInGame.wholeGameTime++
+        setPlayers([...players]);
         if (playTime === playerInGame.turnTime) clearInterval(timer);
         if (playerInGame.turnTime === playerInGame.currentTurnTime) {
-          playerInGame.wholeGameTime =
-            playerInGame.wholeGameTime + playerInGame.currentTurnTime;
+          playerInGame.startGameTime = true;
           playerInGame.currentTurnTime = 0;
-          playerInGame.playerInGame = false;
           setPlayers([...players]);
         }
       }, 1000);
@@ -82,6 +88,7 @@ function Counter() {
           //   setCurrentPlayerGameTime(playingTime)
           // }
           onIncrementTime={incrementTime}
+          stopGameTime={(currentPlayerName)=>onStopGameTime(currentPlayerName)}
         />
       ))}
     </div>

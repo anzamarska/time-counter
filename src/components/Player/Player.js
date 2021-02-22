@@ -3,7 +3,14 @@ import Timer from "react-compound-timer";
 import "../../styles/Player.css";
 import GameTimer from "./GameTimer";
 
-function Player({ player, onPlayerDelete, onGameStateChange, onCurrentTimeCheck}) {
+function Player({
+  player,
+  onPlayerDelete,
+  onGameStateChange,
+  onGameStateChangeStop,
+  onCurrentTimeCheck,
+  onIncrementTime
+}) {
   return (
     <div className="player__container">
       <p className="player__name">{player.name}</p>
@@ -24,24 +31,34 @@ function Player({ player, onPlayerDelete, onGameStateChange, onCurrentTimeCheck}
           <React.Fragment>
             <div>
               {" "}
-          
               Time for turn: <Timer.Minutes /> minutes <Timer.Seconds /> seconds
             </div>
             <br />
             <div>
-              <button className="button--start" onClick={start}>
+              <button
+                className="button--start"
+                onClick={() => {
+                  start();
+                  onGameStateChange(player.name);
+                  onIncrementTime();
+                }}
+              >
                 Start
               </button>
               <button onClick={pause}>Pause</button>
-              <button onClick={(e) => onGameStateChange(player.name)}>
-                start
+              <button
+                onClick={(e) =>
+                  onCurrentTimeCheck({ ...player, currentTime: "000" })
+                }
+              >
+                check current
               </button>
-              <button onClick={(e) => onCurrentTimeCheck({...player, currentTime: "000"})}>check current</button>
               <button
                 className="button--stop"
                 onClick={() => {
                   reset();
                   stop();
+                  onGameStateChangeStop(player.name);
                 }}
               >
                 Stop
@@ -51,11 +68,11 @@ function Player({ player, onPlayerDelete, onGameStateChange, onCurrentTimeCheck}
           </React.Fragment>
         )}
       </Timer>
-      <GameTimer
+      {/* <GameTimer
         gameTime={player.gameTime}
         startGameTime={player.playerInGame}
         player={player.name}
-      />
+      /> */}
     </div>
   );
 }

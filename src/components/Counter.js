@@ -37,20 +37,12 @@ function Counter() {
     const playerInGame = players.filter(
       (player) => player.name === currentPlayerName
     )[0];
-    playerInGame.startGameTime = false
-  }
-  // const setCurrentPlayerGameTime = (currentPlayer) => {
-  //   // console.log("currentPlayer", currentPlayer.name);
-  //   const playerInGame = players.filter(
-  //     (player) => player.name === currentPlayer
-  //   )[0];
-  //   // console.log("playerInGame", playerInGame);
-  //   playerInGame.currentTurnTime = currentPlayer.currentTurnTime;
-  //   setPlayers([...players]);
-  //   // console.log("playerInGame", playerInGame);
-  // };
+    playerInGame.playerInGame = false;
+    playerInGame.startGameTime = false;
+    setPlayers([...players]);
+  };
 
-  function incrementTime() {
+  const incrementTime = () => {
     const playerInGame = players.filter(
       (player) => player.playerInGame === true
     )[0];
@@ -58,7 +50,7 @@ function Counter() {
       let timer = setInterval(function () {
         playTime = ++playTime;
         playerInGame.currentTurnTime = playTime;
-        playerInGame.wholeGameTime++
+        playerInGame.wholeGameTime++;
         setPlayers([...players]);
         if (playTime === playerInGame.turnTime) clearInterval(timer);
         if (playerInGame.turnTime === playerInGame.currentTurnTime) {
@@ -68,7 +60,7 @@ function Counter() {
         }
       }, 1000);
     }
-  }
+  };
 
   return (
     <div className="counter__container">
@@ -84,11 +76,10 @@ function Counter() {
           onGameStateChangeStop={(currentPlayerName) =>
             onPlayerStopTurnTime(currentPlayerName)
           }
-          // onCurrentTurnTimeCheck={(playingTime) =>
-          //   setCurrentPlayerGameTime(playingTime)
-          // }
           onIncrementTime={incrementTime}
-          stopGameTime={(currentPlayerName)=>onStopGameTime(currentPlayerName)}
+          stopGameTime={(currentPlayerName) =>
+            onStopGameTime(currentPlayerName)
+          }
         />
       ))}
     </div>

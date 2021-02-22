@@ -8,8 +8,8 @@ function Player({
   onPlayerDelete,
   onGameStateChange,
   onGameStateChangeStop,
-  onCurrentTimeCheck,
-  onIncrementTime
+  // onCurrentTimeCheck,
+  onIncrementTime,
 }) {
   return (
     <div className="player__container">
@@ -29,6 +29,7 @@ function Player({
       >
         {({ start, resume, pause, stop, reset }) => (
           <React.Fragment>
+          
             <div>
               {" "}
               Time for turn: <Timer.Minutes /> minutes <Timer.Seconds /> seconds
@@ -38,6 +39,7 @@ function Player({
               <button
                 className="button--start"
                 onClick={() => {
+                  reset();
                   start();
                   onGameStateChange(player.name);
                   onIncrementTime();
@@ -46,13 +48,6 @@ function Player({
                 Start
               </button>
               <button onClick={pause}>Pause</button>
-              <button
-                onClick={(e) =>
-                  onCurrentTimeCheck({ ...player, currentTime: "000" })
-                }
-              >
-                check current
-              </button>
               <button
                 className="button--stop"
                 onClick={() => {

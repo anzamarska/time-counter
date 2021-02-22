@@ -23,8 +23,6 @@ function Counter() {
     )[0];
     playerInGame.playerInGame = true;
     setPlayers([...players]);
-    console.log("playerInGame", playerInGame);
-    console.log("players", players);
   };
 
   const onPlayerStopTurnTime = (currentPlayerName) => {
@@ -35,16 +33,16 @@ function Counter() {
     setPlayers([...players]);
   };
 
-  const setCurrentPlayerGameTime = (currentPlayer) => {
-    // console.log("currentPlayer", currentPlayer.name);
-    const playerInGame = players.filter(
-      (player) => player.name === currentPlayer
-    )[0];
-    // console.log("playerInGame", playerInGame);
-    playerInGame.currentTime = currentPlayer.currentTime;
-    setPlayers([...players]);
-    // console.log("playerInGame", playerInGame);
-  };
+  // const setCurrentPlayerGameTime = (currentPlayer) => {
+  //   // console.log("currentPlayer", currentPlayer.name);
+  //   const playerInGame = players.filter(
+  //     (player) => player.name === currentPlayer
+  //   )[0];
+  //   // console.log("playerInGame", playerInGame);
+  //   playerInGame.currentTurnTime = currentPlayer.currentTurnTime;
+  //   setPlayers([...players]);
+  //   // console.log("playerInGame", playerInGame);
+  // };
 
   function incrementTime() {
     const playerInGame = players.filter(
@@ -53,14 +51,19 @@ function Counter() {
     if (playerInGame.playerInGame === true) {
       let timer = setInterval(function () {
         playTime = ++playTime;
+        playerInGame.currentTurnTime = playTime;
         if (playTime === playerInGame.turnTime) clearInterval(timer);
-        console.log("playTime", playTime, "playerInGame.turnTime", playerInGame.turnTime);
-        console.log("timer", timer);
+        if (playerInGame.turnTime === playerInGame.currentTurnTime) {
+          playerInGame.wholeGameTime =
+            playerInGame.wholeGameTime + playerInGame.currentTurnTime;
+          playerInGame.currentTurnTime = 0;
+          playerInGame.playerInGame = false;
+          setPlayers([...players]);
+        }
       }, 1000);
     }
   }
 
-  console.log("players", players);
   return (
     <div className="counter__container">
       <Form onNewPlayer={(player) => addNewPlayer(player)} />
@@ -75,9 +78,9 @@ function Counter() {
           onGameStateChangeStop={(currentPlayerName) =>
             onPlayerStopTurnTime(currentPlayerName)
           }
-          onCurrentTimeCheck={(playingTime) =>
-            setCurrentPlayerGameTime(playingTime)
-          }
+          // onCurrentTurnTimeCheck={(playingTime) =>
+          //   setCurrentPlayerGameTime(playingTime)
+          // }
           onIncrementTime={incrementTime}
         />
       ))}

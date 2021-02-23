@@ -1,37 +1,25 @@
 import React from "react";
 import Timer from "react-compound-timer";
 
-function GameTimer({gameTime, startGameTime, player, onPlayerTimeControl}){
-
-//     const [startGameTimeCh, setStartGameTimeCh] = useState(startGameTime);
-// // This will launch only if propName value has chaged.
-// useEffect(() => { setStartGameTimeCh(startGameTimeCh) }, []);
-
+function GameTimer({player, stopGameTime}){
     return(
        
         <Timer
-        initialTime={gameTime * 1000}
-        startImmediately={startGameTime}
+        initialTime={player.gameTime * 1000}
+        startImmediately={player.startGameTime}
         direction="backward"
-        key={startGameTime}
-        // timeToUpdate={100}
         >
             
-        {({ start, resume, pause, stop, reset, timerState }) => (
+        {({ start, resume, pause, stop, reset}) => (
         <React.Fragment>
+            {console.log("player.startGameTime", player.startGameTime, "player", player)}
             <div>
             {" "}
-            <div>{timerState}</div>
             Time for game: <Timer.Minutes /> minutes <Timer.Seconds /> seconds
             </div>
-            <br />
             <div>
-            <button className="button--start" onClick={()=>{reset(); start()}}>
-                Start
-            </button>
             <button onClick={pause}>Pause</button>
-            <button onClick={resume}>Resume</button>
-            <button className="button--stop" onClick={() => {pause();}}>
+            <button className="button--stop" onClick={() => {pause(); stopGameTime(player.name)}}>
                 Stop
             </button>
             <button onClick={reset}>Reset</button>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Player from "./Player/Player";
+import ActivePlayer from "./Player/ActivePlayer";
 import Form from "./Form";
+import PlayersList from "./PlayersList";
 import "../styles/Counter.css";
 
 function Counter() {
@@ -65,8 +66,10 @@ function Counter() {
   return (
     <div className="counter__container">
       <Form onNewPlayer={(player) => addNewPlayer(player)} />
+      <PlayersList/>
+      <h4>Active Player:</h4>
       {players.map((player) => (
-        <Player
+        <ActivePlayer
           key={player.name}
           player={player}
           onPlayerDelete={() => deletePlayer()}

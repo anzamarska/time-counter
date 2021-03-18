@@ -12,6 +12,7 @@ function Player({
   return (
     <div className="player__container">
       <p className="player__name">{player.name}</p>
+      <p>Whole game time: {player.wholeGameTime}</p>
       <button
         className="button--delete"
         onClick={(e) => onPlayerDelete(player.name)}

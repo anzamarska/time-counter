@@ -13,9 +13,9 @@ function Counter() {
     setPlayers([...players, newPlayer]);
   };
 
-  const deletePlayer = (deletedPlayer) => {
-    players.filter((player) => player === deletedPlayer);
-    setPlayers([...players]);
+  const deletePlayer = (deleteName) => {
+    const newPlayers = players.filter((player) => player.name !== deleteName)
+    setPlayers([...newPlayers]);
   };
 
   const onPlayerStartTurnTime = (currentPlayerName) => {
@@ -72,7 +72,7 @@ function Counter() {
         <Player
           key={player.name}
           player={player}
-          onPlayerDelete={() => deletePlayer()}
+          onPlayerDelete={(deleteName) => deletePlayer(deleteName)}
           onGameStateChange={(currentPlayerName) =>
             onPlayerStartTurnTime(currentPlayerName)
           }

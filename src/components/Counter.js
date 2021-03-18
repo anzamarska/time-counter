@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import ActivePlayer from "./Player/ActivePlayer";
 import Form from "./Form";
-import PlayersList from "./PlayersList";
+import Player from "./Player/Player";
 import "../styles/Counter.css";
 
 function Counter() {
   let playTime = 0;
 
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState([{name: "aa", turnTime: 5, gameTime: 120, playerInGame: false, currentTurnTime: 0, wholeGameTime: 0, startGameTime: false}, {name: "bb", turnTime: 5, gameTime: 120, playerInGame: false, currentTurnTime: 0, wholeGameTime: 0, startGameTime: false}]);
 
   const addNewPlayer = (newPlayer) => {
     setPlayers([...players, newPlayer]);
@@ -41,6 +41,7 @@ function Counter() {
     playerInGame.playerInGame = false;
     playerInGame.startGameTime = false;
     setPlayers([...players]);
+    console.log("playeringame", playerInGame)
   };
 
   const incrementTime = () => {
@@ -66,26 +67,36 @@ function Counter() {
   return (
     <div className="counter__container">
       <Form onNewPlayer={(player) => addNewPlayer(player)} />
-      <PlayersList/>
-      <h4>Active Player:</h4>
+      <h4>Players List:</h4>
       {players.map((player) => (
-        <ActivePlayer
+        <Player
           key={player.name}
           player={player}
           onPlayerDelete={() => deletePlayer()}
           onGameStateChange={(currentPlayerName) =>
             onPlayerStartTurnTime(currentPlayerName)
           }
+          onIncrementTime={incrementTime}
+        />
+      ))}
+
+      <h4>Active Player:</h4>
+      {players.filter((player)=> player.playerInGame === true).map((player) => (    
+        <ActivePlayer
+          player={player}
+          onGameStateChange={(currentPlayerName) =>
+            onPlayerStartTurnTime(currentPlayerName)
+          }
           onGameStateChangeStop={(currentPlayerName) =>
             onPlayerStopTurnTime(currentPlayerName)
           }
-          onIncrementTime={incrementTime}
           stopGameTime={(currentPlayerName) =>
             onStopGameTime(currentPlayerName)
           }
         />
-      ))}
-    </div>
+      ))
+     }
+    </div> 
   );
 }
 

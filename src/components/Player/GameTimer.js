@@ -2,8 +2,8 @@ import React from "react";
 import Timer from "react-compound-timer";
 
 function GameTimer({player, stopGameTime}){
+
     return(
-       
         <Timer
         initialTime={player.gameTime * 1000}
         startImmediately={player.startGameTime}
@@ -12,9 +12,7 @@ function GameTimer({player, stopGameTime}){
             
         {({ start, resume, pause, stop, reset}) => (
         <React.Fragment>
-            {console.log("player.startGameTime", player.startGameTime, "player", player)}
             <div>
-            {" "}
             Time for game: <Timer.Minutes /> minutes <Timer.Seconds /> seconds
             </div>
             <div>
@@ -22,7 +20,6 @@ function GameTimer({player, stopGameTime}){
             <button className="button--stop" onClick={() => {pause(); stopGameTime(player.name)}}>
                 Stop
             </button>
-            <button onClick={reset}>Reset</button>
             </div>
         </React.Fragment>
         )}

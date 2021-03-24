@@ -1,0 +1,27 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "form"
+      "playersList"
+      "activePlayer";
+  }
+  
+  .form { grid-area: form; }
+  
+  .playersList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "player . . .";
+    grid-area: playersList;
+  }
+  
+  .player { grid-area: player; }
+  
+  .activePlayer { grid-area: activePlayer; }
+  

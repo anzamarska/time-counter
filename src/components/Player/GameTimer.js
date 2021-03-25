@@ -1,9 +1,10 @@
 import React from "react";
 import Timer from "react-compound-timer";
 
-function GameTimer({player, stopGameTime}){
+function GameTimer({player, stopGameTime, onDecrementTime}){
 
     return(
+        
         <Timer
         initialTime={player.gameTime * 1000}
         startImmediately={player.startGameTime}
@@ -17,7 +18,9 @@ function GameTimer({player, stopGameTime}){
             </div>
             <div>
             <button onClick={pause}>Pause</button>
-            <button className="button--stop" onClick={() => {pause(); stopGameTime(player.name)}}>
+            <button className="button--stop" onClick={() => {pause(); stopGameTime(player.name); 
+                // onDecrementTime()
+            }}>
                 Stop
             </button>
             </div>

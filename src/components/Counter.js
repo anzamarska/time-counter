@@ -40,6 +40,8 @@ function Counter() {
     )[0];
     playerInGame.playerInGame = false;
     playerInGame.startGameTime = false;
+    playerInGame.gameTime = --playerInGame.gameTime;
+    // the gameTime should vary as much as the time elapsed from the end of the "turnTime" to the click of a stop
     setPlayers([...players]);
     console.log("playeringame", playerInGame)
   };
@@ -63,6 +65,27 @@ function Counter() {
       }, 1000);
     }
   };
+
+  const decrementGameTime = () => {
+    const playerInGame = players.filter(
+      (player) => player.playerInGame === true
+    )[0];
+    if (playerInGame.playerInGame === true) {
+      // let timer = setInterval(function () {
+        playerInGame.gameTime = playerInGame.gameTime--;
+        // playerInGame.currentTurnTime = playTime;
+        // playerInGame.wholeGameTime++;
+        setPlayers([...players]);
+        console.log("players", players)
+        // if (playTime === playerInGame.turnTime) clearInterval(timer);
+        // if (playerInGame.turnTime === playerInGame.currentTurnTime) {
+        //   playerInGame.startGameTime = true;
+        //   playerInGame.currentTurnTime = 0;
+        //   setPlayers([...players]);
+        // }
+      // }, 1000);
+    }
+  }
 
   return (
     <div className="counter__container">
@@ -93,6 +116,7 @@ function Counter() {
           stopGameTime={(currentPlayerName) =>
             onStopGameTime(currentPlayerName)
           }
+          onDecrementTime={decrementGameTime}
         />
       ))
      }

@@ -9,6 +9,7 @@ function Player({
   onGameStateChangeStop,
   onIncrementTime,
   stopGameTime,
+  onDecrementTime
 }) {
   return (
     <div className="player__container">
@@ -52,7 +53,7 @@ function Player({
         )}
       </Timer>
       {player.startGameTime === true && ( 
-        <GameTimer player={player} stopGameTime={stopGameTime}/>
+        <GameTimer player={player} stopGameTime={stopGameTime} onDecrementTime={onDecrementTime}/>
       )}
     </div>
   );

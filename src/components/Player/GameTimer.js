@@ -1,7 +1,7 @@
 import React from "react";
 import Timer from "react-compound-timer";
 
-function GameTimer({player, stopGameTime, onDecrementTime}){
+function GameTimer({player, stopGameTime}){
 
     return(
         
